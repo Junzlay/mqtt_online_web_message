@@ -17,6 +17,8 @@
   <script src="src/js/index.js"></script>
   <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
   <script src="src/js/time.js"></script>
+  
+  <script src="src/js/inputEmoji.js"></script>
   <!-- <link rel="import" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css"> -->
   <script src="src/js/message.js"></script>
@@ -30,7 +32,8 @@
 
 <div class="chat-box">
 <div class="chat-box-header">
-  Messages
+  <span class="ml-4">Messages</span>
+  
   <span class="chat-box-toggle"><ion-icon name="close-circle-outline" style="font-size: 2rem;"></ion-icon></span>
 </div>
 <div class="chat-box-body">
@@ -42,7 +45,15 @@
 </div>
 <div class="chat-input">      
   <form>
-    <input type="text" id="chat-input" class="text-secondary send"  placeholder="Send a message..."/>
+    <!-- <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon1">😀</button>
+      </div>
+      <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+    </div> -->
+    <input type="text" data-emoji="true" id="chat-input" name="emoji" class="text-secondary send"  placeholder="Send a message..."/>
+    <!-- <button type="button" class="btn emoji">emo</button> -->
+    <!-- <button id="emoji-button" class="chat-emoji">😀</button> -->
   <button type="submit" class="chat-submit" id="chat-submit"><ion-icon name="send-outline"></ion-icon></button>
   </form>      
 </div>
