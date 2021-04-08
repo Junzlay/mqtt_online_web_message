@@ -11,10 +11,16 @@ $(document).ready(function () {
 
     $client.on('message', function (topic, payload) {
         if (topic != $('#topic').val()) {
+             if(topic.indexOf('/')){
+                topic = topic.substr(topic.indexOf("/") + 1)
+            }
             $(".chat-logs").append("<div class='chat-msg user'><span class='msg-avatar'><img class='rounded-circle' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgzwcTAQIHtNpvDnxvtOOrd3nDh1z17HKvEQ&usqp=CAU'></span><div class='cm-msg-text wrap'>" + payload + "<p class='small' style='font-size: 9.5px;height: 12px;margin: 0;'>" + dateFormat(new Date(), "h:MM TT") + " | " + topic + "</p></div></div>")
             $(".chat-logs").animate({ scrollTop: $(".chat-logs")[0].scrollHeight }, 1000);
 
         } else {
+             if(topic.indexOf('/')){
+                topic = topic.substr(topic.indexOf("/") + 1)
+            }
             $(".chat-logs").append("<div class='chat-msg self '><span class='msg-avatar'><img class='rounded-circle'  src='https://wallpaperaccess.com/full/4595683.jpg'></span><div class='cm-msg-text wrap'>" + payload + "<p class='small' style='font-size: 9.5px;height: 12px;margin: 0;'>" + dateFormat(new Date(), "h:MM TT") + " | " + topic + "</p></div></div>")
             $(".chat-logs").animate({ scrollTop: $(".chat-logs")[0].scrollHeight }, 1000);
 
