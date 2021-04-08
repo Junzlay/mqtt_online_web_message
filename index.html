@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Online MQTT Web Client</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link rel="shortcut icon" sizes="100"
+    href="https://user-images.githubusercontent.com/7721625/52227945-5280b580-28b1-11e9-804c-75a842537393.png"
+    type="image/x-icon" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../act4/src/css/style.css" />
+  <script src="../act4/src/js/browserMqtt.js"></script>
+  <script src="../act4/src/js/index.js"></script>
+  <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+  <script src="../act4/src/js/time.js"></script>
+  <!-- <link rel="import" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css"> -->
+  <script src="../act4/src/js/message.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<body>
+  <div id="chat-circle" class="btn btn-raised">
+    <div id="chat-overlay"></div>
+    <i class="fa fa-comments ic"></i>
+</div>
+
+<div class="chat-box">
+<div class="chat-box-header">
+  Messages
+  <span class="chat-box-toggle"><ion-icon name="close-circle-outline" style="font-size: 2rem;"></ion-icon></span>
+</div>
+<div class="chat-box-body">
+  <div class="chat-box-overlay">   
+  </div>
+  <div class="chat-logs mb-2">
+    
+  </div>
+</div>
+<div class="chat-input">      
+  <form>
+    <input type="text" id="chat-input" class="text-secondary send"  placeholder="Send a message..."/>
+  <button type="submit" class="chat-submit" id="chat-submit"><ion-icon name="send-outline"></ion-icon></button>
+  </form>      
+</div>
+</div>
+
+  <div class="">
+
+  <div class="container p-4 pt-4 mt-4 text-center bg-transparent" style="z-index: 0;">
+    <h1 class="text-light">Online MQTT Web Client</h1>
+  </div>
+
+  <div class="container" style="z-index: 0;">
+    <div class="row justify-content-center">
+      <div class="col-sm-6">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">URL</span>
+          </div>
+          <input type="text" class="form-control" value="wss://test.mosquitto.org:8081/mqtt"
+            aria-describedby="basic-addon1" />
+          <div class="input-group-append">
+            <button class="btn btn-danger connect" style="z-index: 0" type="button">
+              Connect Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="alert alert-danger mt-4" id="error_message" role="alert" style="display: none; ">
+      You are not Connected
+      <ion-icon name="alert-circle-outline" style="float: right"></ion-icon>
+    </p>
+    <div class="row">
+      <div class="col-sm-6 col-md-6 align-items-stretch mt-4">
+        <div class="card border-white h-100">
+          <div class="card-header font-weight-bold">Publish</div>
+          <div class="card-body">
+            <form action="">
+              <div class="field">
+                <input type="text" required class="" id="topic" />
+                <label title="Topic" data-title="Topic"></label>
+              </div>
+
+              <div class="field">
+                <input type="text" required class="" id="payload" />
+                <label title="Payload" data-title="Payload"></label>
+              </div>
+
+              <div class="input-group">
+                <button id="publish" class="btn btn-info btn-sm">
+                  Publish 
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!--</div>-->
+      </div>
+
+      <div class="col-sm-6 col-md-6 align-items-stretch mt-4">
+        <div class="card border-white h-100">
+          <div class="card-header font-weight-bold">Subscribe</div>
+          <div class="card-body">
+            <form action="">
+              <div class="field">
+                <input type="text" required class="" id="subtopic" />
+                <label title="Topic" data-title="Topic"></label>
+              </div>
+
+             
+
+              <div class="input-group">
+                <button id="subscribe" class="btn btn-info btn-sm">
+                  Subscribe 
+                </button>
+              </div>
+            </form>
+            
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Publish and Subscribe Messages -->
+    <div class="row mb-4">
+      <div class="col-sm-6 col-md-6 mt-4">
+        <div class="card border-white">
+          <div class="card-header font-weight-bold">
+            Publish Messages
+            <!-- <button class="btn btn-info btn-sm" id="clear" style="float: right">
+              Clear
+            </button> -->
+          </div>
+          <div class="card-body p-0">
+            <table class="table table-borderless" id="pub_message">
+              <thead>
+                <tr>
+                  <th>Topic</th>
+                  <th>Payload</th>
+                  <th>Time Stamp</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-6 mt-4">
+        <div class="card border-white">
+          <div class="card-header font-weight-bold">
+            Subscribed Messages
+            <!-- <button class="btn btn-info btn-sm" id="clear" style="float: right">
+              Clear
+            </button> -->
+          </div>
+          <div class="card-body p-0">
+            <!-- <p class="card-text">Some quick example text to build 
+                         on the card 
+                        title and make up the bulk of the card's content.</p> -->
+            <table class="table table-borderless" id="sub_message">
+              <thead>
+                <tr>
+                  <th>Topic</th>
+                
+                  <th>Time Stamp</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+</body>
+
+</html>
