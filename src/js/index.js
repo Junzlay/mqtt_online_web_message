@@ -74,8 +74,12 @@ $(document).ready(function () {
 
     $('#subscribe').click(function () {
         if (connect) {
-
+            
             if ($('#subtopic').val() != "") {
+                 if($('#subtopic').val().indexOf('/')){
+                    $topic_sub= $('#subtopic').val().substr(0, $('#subtopic').val().indexOf('/')); 
+                    $(".topic-title").text($topic_sub)
+                }
                 $client.subscribe($('#subtopic').val())
                 $("#sub_message tbody").prepend("<tr><td>" + $('#subtopic').val() + "</td><td>" + dateFormat(new Date(), "dddd, mmmm dS, yyyy, h:MM:ss TT") + "</td></tr>")
             }
