@@ -186,6 +186,7 @@ a.at-button.toggle-icon {
 
 
 #chat-circle {
+    z-index:999;
     position: fixed;
     bottom: 50px;
     right: 50px;
