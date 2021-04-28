@@ -7,7 +7,7 @@ $(document).ready(function () {
 
     window.EmojiPicker.init()
 
-    $client = mqtt.connect('wss://test.mosquitto.org:8081/mqtt')
+    $client = mqtt.connect('wss://mqtt.eclipseprojects.io:443/mqtt')
 
     $client.on('message', function (topic, payload) {
       if (topic != $('#topic').val()) {
