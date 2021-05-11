@@ -76,9 +76,10 @@ close.style = `position: absolute;
     emojiPicker.setAttribute("class", "scroll-over");
     emojiPicker.setAttribute("id", "emo");
   const emojiTrigger = document.createElement('a')
+  emojiTrigger.setAttribute("class", "rotate-emoji");
   emojiTrigger.style = `position: absolute;
-    
-    top: 12px;
+  cursor:pointer;
+    top: 10px;
     right: 45px;
     text-decoration: none;`
 //   emojiTrigger.setAttribute('href', "javascript:void(0)")

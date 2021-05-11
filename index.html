@@ -13,6 +13,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="src/css/style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
   <script src="src/js/browserMqtt.js"></script>
   <script src="src/js/index.js"></script>
   <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
@@ -72,11 +74,12 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">URL</span>
           </div>
-          <input type="text" class="form-control" value="wss://test.mosquitto.org:8081/mqtt"
+          <input type="text" class="form-control" readonly="readonly" value="wss://mqtt.eclipseprojects.io:443/mqtt"
             aria-describedby="basic-addon1" />
           <div class="input-group-append">
             <button class="btn btn-danger connect" style="z-index: 0" type="button">
               Connect Now
+             
             </button>
           </div>
         </div>
@@ -117,7 +120,6 @@
         <div class="card border-white h-100">
           <div class="card-header font-weight-bold">Subscribe</div>
           <div class="card-body">
-            <form action="">
               <div class="field">
                 <input type="text" required class="" id="subtopic" />
                 <label title="Topic" data-title="Topic"></label>
@@ -129,10 +131,10 @@
                 <button id="subscribe" class="btn btn-info btn-sm">
                   Subscribe 
                 </button>
+                <!-- <button id="unsubscribe" class="btn btn-danger ml-2 btn-sm">
+                  Unsubscribe
+                </button> -->
               </div>
-            </form>
-            
-
           </div>
         </div>
       </div>
