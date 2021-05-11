@@ -1,6 +1,6 @@
 $(document).ready(function () {
     document.onkeydown = function (e) {
-        // return (event.ctrlKey && event.shiftKey && event.keyCode == 73||event.keyCode == 123||e.ctrlKey && (e.keyCode === 67 || e.keyCode === 85 || e.keyCode === 117))?false:true 
+         return (event.ctrlKey && event.shiftKey && event.keyCode == 73||event.keyCode == 123||e.ctrlKey && (e.keyCode === 67 || e.keyCode === 85 || e.keyCode === 117))?false:true 
     }
     $("#error_message").hide()
     var connect = false;
